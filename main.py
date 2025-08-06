@@ -19,8 +19,12 @@ BLAGUES = [
     "Pourquoi les canards sont toujours à l’heure ? Parce qu’ils sont dans l’étang (le temps) !",
     "Docteur, j’ai mal partout ! ... Comment ça ? ... Quand je touche ma tête, j’ai mal… quand je touche mon ventre, j’ai mal… quand je touche ma jambe, j’ai mal… ... Ah je vois : vous avez le doigt cassé !",
     "Que fait une fraise sur un cheval ? Tagada tagada!",
-]
+"Quelle est la boisson préférée des informaticiens ? Le Java.",
+"Pourquoi les programmeurs aiment-ils les maths ? Parce qu'ils aiment les problèmes.",
+ "Quel est le sport le plus silencieux ? Le para-chuuuutisme…"
 
+
+]
 # intents
 intents = discord.Intents.default()
 intents.message_content = True
@@ -33,14 +37,18 @@ bot = commands.Bot(command_prefix='*', intents=intents)
 #############
 # Commandes #
 #############
-@bot.command()
+@bot.command(help="Commande pour dire bonjour au bot")
 async def bonjour(ctx):
-    await ctx.send(f"Salut {ctx.author.name}, ça va ?")
-
+    await ctx.send(f"Salut {ctx.author.display_name}, ça va ?")
 
 @bot.command()
 async def cv(ctx):
-    await ctx.send(f"Oe cv & toi {ctx.author.name} ?")
+    await ctx.send(f"Oe cv & toi {ctx.author.display_name} ?")
+
+
+@bot.command()
+async def moicv(ctx):
+    await ctx.send(f"cool {ctx.author.display_name}")
 
 
 @bot.command(name="quiestla",
@@ -89,11 +97,11 @@ async def pileouface(ctx, *, choix: str):
     resultat = random.choice(["pile", "face"])
     if choix == resultat:
         await ctx.send(
-            f"Bravo {ctx.author.name}, tu as gagné ! Le résultat était bien {resultat}."
+            f"Bravo {ctx.author.display_name}, tu as gagné ! Le résultat était bien {resultat}."
         )
         return
     await ctx.send(
-        f"Dommage {ctx.author.name}, tu as perdu ! Le résultat était {resultat}."
+        f"Dommage {ctx.author.display_name}, tu as perdu ! Le résultat était {resultat}."
     )
 
 
